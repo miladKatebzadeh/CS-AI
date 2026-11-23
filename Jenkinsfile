@@ -32,7 +32,24 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                // Shallow checkout is deliberate: the upstream Open WebUI Git history
+                // is very large. Do not fetch all tags or historical objects.
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/miladKatebzadeh/CS-AI.git',
+                        refspec: '+refs/heads/main:refs/remotes/origin/main'
+                    ]],
+                    extensions: [[
+                        $class: 'CloneOption',
+                        shallow: true,
+                        depth: 1,
+                        noTags: true,
+                        honorRefspec: true,
+                        timeout: 30
+                    ]]
+                ])
                 sh 'git rev-parse --short=12 HEAD'
             }
         }
