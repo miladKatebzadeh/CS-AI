@@ -22,6 +22,17 @@ This repository includes a root `Jenkinsfile`. It builds and tests **CS.AI**, a 
 
 First, keep **DEPLOY_LOCAL=false** to validate the CI build safely. The pipeline has no server connection settings beyond the optional local deployment.
 
+## Fix for large Open WebUI Git history (important)
+
+The fork inherits a very large Git history. Jenkins can fail **before any pipeline stage starts** while retrieving the `Jenkinsfile`, with `git-remote-https died of signal 15` or `invalid index-pack output`. Git plugin's default fetch timeout is commonly 10 minutes; `signal 15` may indicate that the fetch was terminated due to timeout or another external event. Avoid downloading full history:
+
+1. Open **Job → Configure → Pipeline** and keep **Branch specifier** set to `*/main`, **Script Path** set to `Jenkinsfile`.
+2. **Uncheck `Lightweight checkout`** for the initial run if the error stack includes `GitSCMFileSystem$BuilderImpl` (lightweight Jenkinsfile loading can initialize a full local Git cache of this huge repository).
+3. In the job's **Git → Additional Behaviours → Add → Advanced clone behaviours**, enable **Shallow clone**, set **Shallow clone depth** to `1`, enable **Fetch tags = false / Do not fetch tags** where available, and set **Timeout (minutes)** to `30`. If offered, enable **Honor refspec on initial clone** and use `+refs/heads/main:refs/remotes/origin/main` as the branch-specific refspec.
+4. Save and rebuild. The checked-in `Jenkinsfile` also uses a shallow, depth-1, no-tags checkout for its own workspace.
+
+If no Advanced clone behaviours are available, try a newer Git plugin or configure the job using **Pipeline script** with the `Jenkinsfile` copied inline (not preferred for long-term maintenance), then let its own shallow checkout run. If the same error persists even with shallow clone, check controller/agent disk space, memory, Git timeout, and reverse-proxy/network interruption. Do not assume a code compilation problem; the pipeline has not started yet.
+
 ## Pipeline stages
 
 1. Checkout from GitHub and verify tools/source.
