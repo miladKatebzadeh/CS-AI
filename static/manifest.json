@@ -1,1 +1,24 @@
-{}
+{
+  "name": "CS.AI",
+  "short_name": "CS.AI",
+  "description": "CS.AI — Personal Computer Science AI interface",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/static/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#da221a",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

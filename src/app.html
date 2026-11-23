@@ -86,8 +86,8 @@
 				// Do not alter, remove, obscure, or replace them except as LICENSE permits:
 				// https://docs.openwebui.com/license.
 				const preloadHref = document.documentElement.classList.contains('dark')
-					? '/static/splash-dark.png'
-					: '/static/splash.png';
+					? '/static/cs-ai-splash.svg'
+					: '/static/cs-ai-splash.svg';
 				const preload = document.createElement('link');
 				preload.rel = 'preload';
 				preload.as = 'image';
@@ -119,7 +119,7 @@
 				// LICENSE covers this Open WebUI splash logo.
 				// Do not alter, remove, obscure, or replace it except as LICENSE permits:
 				// https://docs.openwebui.com/license.
-				logo.src = isDarkMode ? '/static/splash-dark.png' : '/static/splash.png';
+				logo.src = isDarkMode ? '/static/cs-ai-splash.svg' : '/static/cs-ai-splash.svg';
 				logo.alt = '';
 
 				document.addEventListener('DOMContentLoaded', function () {
@@ -133,7 +133,7 @@
 			})();
 		</script>
 
-		<title>Open WebUI</title>
+		<title>CS.AI</title>
 
 		%sveltekit.head%
 	</head>
@@ -172,7 +172,7 @@
 					id="logo-her"
 					alt=""
 					style="width: auto; height: 13rem"
-					src="/static/splash.png"
+					src="/static/cs-ai-splash.svg"
 					loading="eager"
 					fetchpriority="high"
 					class="animate-pulse-fast"
@@ -247,7 +247,7 @@
 
 		html.her #logo-her {
 			display: block;
-			filter: invert(1);
+			filter: none;
 		}
 
 		html.her #progress-background {

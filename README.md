@@ -1,3 +1,18 @@
+# CS.AI
+
+**CS.AI** is a personal, non-official hobby fork of [Open WebUI](https://github.com/open-webui/open-webui), customized with the Herat University Computer Science emblem supplied by the project owner. This repository is not an official product of Herat University or Open WebUI.
+
+- **Display name:** CS.AI
+- **Branding:** Red Computer Science emblem, custom favicons and splash screen
+- **Development:** Build from source using `docker compose up --build -d`; then visit `http://localhost:3000`
+- **License:** This fork retains the upstream `LICENSE`. The Open WebUI branding exception for deployments or distributions serving no more than 50 end users in a rolling 30-day period applies only while its conditions are met. See [the license](LICENSE).
+
+The upstream README is preserved below for reference; its Docker image and package installation commands refer to **upstream Open WebUI**, not the customized CS.AI build.
+
+---
+
+## Upstream project documentation
+
 <h2>Open WebUI</h2>
 
 <p>Open WebUI is <a href="https://docs.openwebui.com/"><strong>a home for AI</strong></a>: an extensible, easy-to-use, self-hosted platform built to run entirely offline. Connect local models through Ollama or use OpenAI-compatible APIs for local and cloud models.</p>
