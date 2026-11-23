@@ -10,7 +10,6 @@ pipeline {
         skipDefaultCheckout(true)
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '10'))
-        timestamps()
         timeout(time: 150, unit: 'MINUTES')
     }
 
